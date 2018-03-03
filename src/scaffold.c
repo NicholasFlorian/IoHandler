@@ -8,11 +8,11 @@ int main(int args, char **argv){
 	//Var
 	char* in;
 
-	int i = 5;
+	int i = 19;
 	while(i-- > 0){
 		
-		//in = softenStringInput();
-		//free(in);
+		in = softenStringInput();
+		free(in);
 		
 	}
 		
