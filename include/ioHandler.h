@@ -25,4 +25,10 @@ int softenInt(char *in);
  **/
 char* softenStringInput();
 
+/**Function to return copy of string with smaller memory size
+ *@return string with no extra memory
+ *@param stringToShorten wvalgord with extra memory allocated
+ **/
+char* shortenStringLength(char* stringToShorten);
+
 #endif

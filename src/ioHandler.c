@@ -1,15 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "ioHandler.h"
 
 int softenIntInput(){
     
     //var
-    
-    //allow up to 30 digit long numbers
-    char *in = malloc(sizeof(char) * 31);
-    int softInt = 0;
-    
+	char *in;
+	int softInt;
+	
+	
+	softInt = 0;
+	
+	//allow up to 30 digit long numbers
+	in = malloc(sizeof(char) * 31);
+	
     //get user input as a string
     fgets(in, 30, stdin);
     
@@ -35,15 +40,17 @@ int softenIntInput(){
     
     free(in);
     return softInt;
-    
-    
+	
 }
 
 int softenInt(char* in){
     
     //var
-    int softInt = 0;
-    
+	int softInt;
+	
+	
+	softInt = 0;
+	
     //use atof in order to convert
     softInt = atof(in);
     
@@ -69,15 +76,60 @@ int softenInt(char* in){
 }
 
 char* softenStringInput(){
-    
-    //var
-    
-    //allow up to 80 character words
-    char *softenString = malloc(sizeof(char) * 81);
-    
+	
+	//var
+	char *softenString;
+	char *shortenedString;
+	
+	
+	//allow up to 80 character words
+	softenString = malloc(sizeof(char) * 81);
+
     //get input
     fgets(softenString, 80, stdin);
-    
-    return softenString;
-    
+	
+	shortenedString = shortenStringLength(softenString);
+	
+	free(softenString);
+	return shortenedString;
+	
+}
+
+char* shortenStringLength(char *stringToShorten){
+	
+	//var
+	int count;
+	char *before;
+	char *after;
+
+	
+	//create memory thats the right size for the string
+	count = strlen(stringToShorten) + 1;
+	before = malloc(sizeof(char) * count);
+	
+	//return a new string the correct size,
+	strncpy(before, stringToShorten, count);
+	
+	//remove trailing end character if present
+	if(before[count - 2] == '\n'){
+		
+		//set end char
+		before[count - 2] = '\0';
+		
+		//Create the even better size
+		after = malloc(sizeof(char) * (count -1));
+		
+		//copy without trailing end
+		strncpy(after, before, count - 1);
+		
+		
+		//return new word
+		free(before);
+		return after;
+		
+	}
+	
+	return before;
+
+	
 }
