@@ -88,8 +88,8 @@ char* softenStringInput(){
     //get input
     fgets(softenString, 80, stdin);
 	
+	//return string of exact length
 	shortenedString = shortenStringLength(softenString);
-	
 	free(softenString);
 	return shortenedString;
 	
@@ -102,6 +102,7 @@ char* shortenStringLength(char *stringToShorten){
 	char *before;
 	char *after;
 
+	///TODO REFACTOR COMPLETLY
 	
 	//create memory thats the right size for the string
 	count = strlen(stringToShorten) + 1;
